@@ -11,7 +11,7 @@ and also better document what needs to be done. So instead of writing another gu
 ## Requirements
 
  * Workstation running python (version 2.7 recommended). All platforms should be supported.
- * [Fabric](http://docs.fabfile.org/en/1.4.1/index.html) - can be installed via `pip install fabric` or `easy_install fabric`
+ * [Fabric](http://docs.fabfile.org/en/1.4.1/index.html) - can be installed via `pip install fabric` or `easy_install fabric` (make sure python-dev is installed)
  * a new VPS/Dedicated server running a Debian-based distribution (Debian, Ubuntu etc) - or
  * Virtualbox with Vagrant (see below)
 
@@ -19,6 +19,12 @@ and also better document what needs to be done. So instead of writing another gu
 
 Best to execute this on a clean virtual machine running Debian 6 (Squeeze).
 Also tested successfully on Ubuntu 12.04 VPS.
+
+Preparation steps for Ubuntu:
+* apt-get update && apt-get upgrade
+* apt-get install python-dev python-pip fabric git-core
+* git clone https://github.com/gingerlime/graphite-fabric.git
+* cd graphite-fabric
 
 ## Installation Instructions 
 
