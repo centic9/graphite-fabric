@@ -42,7 +42,7 @@ def graphite_install():
     """
     _check_sudo()
     sudo('apt-get update && apt-get upgrade -y')
-    sudo('apt-get install -y python-dev python-setuptools libxml2-dev libpng12-dev pkg-config build-essential supervisor make python g++ git-core')
+    sudo('apt-get install -y python-dev python-twisted python-setuptools libxml2-dev libpng12-dev pkg-config build-essential supervisor make python g++ git-core')
     sudo('easy_install pip')
     sudo('pip install simplejson') # required for django admin
     sudo('pip install carbon')
@@ -118,7 +118,7 @@ def graphite_install():
         sudo('ldconfig')
     # installing giraffe dashboard
     with cd('/opt/graphite/webapp'):
-        sudo('git clone git://github.com/kenhub/giraffe.git')
+        sudo('git clone https://github.com/kenhub/giraffe.git')
     # setting the carbon config files (default)
     with cd('/opt/graphite/conf/'):
         sudo('cp carbon.conf.example carbon.conf')
