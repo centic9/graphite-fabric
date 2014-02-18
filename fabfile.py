@@ -46,11 +46,11 @@ def graphite_install():
     sudo('apt-get install -y python-dev python-twisted python-setuptools libxml2-dev libpng12-dev pkg-config build-essential supervisor make python g++ git-core')
     sudo('easy_install pip')
     sudo('pip install simplejson') # required for django admin
-    sudo('pip install git+git://github.com/graphite-project/carbon.git@0.9.x#egg=carbon')
+    sudo('pip install git+https://github.com/graphite-project/carbon.git@0.9.x#egg=carbon')
     sudo('pip install whisper')
     sudo('pip install django==1.5.2')
     sudo('pip install django-tagging')
-    sudo('pip install git+git://github.com/graphite-project/graphite-web.git@0.9.x#egg=graphite-web')
+    sudo('pip install git+https://github.com/graphite-project/graphite-web.git@0.9.x#egg=graphite-web')
 
     # creating a folder for downloaded source files
     sudo('mkdir -p /usr/local/src')
