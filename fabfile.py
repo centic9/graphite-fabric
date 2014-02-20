@@ -124,6 +124,11 @@ def graphite_install():
     with cd('/opt/graphite/conf/'):
         sudo('cp carbon.conf.example carbon.conf')
         sudo('cp storage-schemas.conf.example storage-schemas.conf')
+		# set a longer retention
+		sudo('sed -i -e "s/retentions = .*/retentions = 10s:1d,1m:30d,15m:5y/g" storage-schemas.conf')
+        sudo('cp storage-aggregation.conf.example storage-aggregation.conf')
+		# don't loose any values through aggregation into next retention
+		sudo('sed -i -e "s/xFilesFactor = .*/xFilesFactor = 0/g" storage-aggregation.conf')
     # clearing old carbon log files
     put(conf_file('carbon-logrotate'), '/etc/cron.daily/', use_sudo=True, mode=0755)
 
