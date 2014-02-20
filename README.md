@@ -22,7 +22,7 @@ Also tested successfully on Ubuntu 12.04 VPS.
 
 Preparation steps for Ubuntu:
 * sudo bash 
-* apt-get update && apt-get -y upgrade && apt-get -y install python-dev python-pip fabric git-core && git clone https://github.com/centic9/graphite-fabric.git && cd graphite-fabric
+* apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" dist-upgrade && apt-get -y install python-dev python-pip fabric git-core && git clone https://github.com/centic9/graphite-fabric.git && cd graphite-fabric
 * passwd
 
 ## Installation Instructions 
