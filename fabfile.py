@@ -43,7 +43,7 @@ def graphite_install():
     """
     _check_sudo()
     sudo('apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" dist-upgrade')
-    sudo('apt-get install -y python-dev python-twisted python-setuptools libxml2-dev libpng12-dev pkg-config build-essential supervisor make python g++ git-core')
+    sudo('apt-get install -y python-dev python-twisted python-setuptools libxml2-dev libpng12-dev pkg-config build-essential supervisor make python g++ git-core ruby-bundler rubygems ruby1.9.3 ')
     sudo('easy_install pip')
     sudo('pip install simplejson') # required for django admin
     sudo('pip install git+https://github.com/graphite-project/carbon.git@0.9.12#egg=carbon')
@@ -123,8 +123,10 @@ def graphite_install():
     # setting the carbon config files (default)
     with cd('/opt/graphite/conf/'):
         sudo('cp carbon.conf.example carbon.conf')
+		# set a longer retention
+        sudo('sed -i -e "s/MAX_CREATES_PER_MINUTE = .*/MAX_CREATES_PER_MINUTE = 5000/g" carbon.conf')
         sudo('cp storage-schemas.conf.example storage-schemas.conf')
-        # set a longer retention
+        # allow more measures to be created quickly
         sudo('sed -i -e "s/retentions = .*/retentions = 10s:1d,1m:30d,15m:5y/g" storage-schemas.conf')
         sudo('cp storage-aggregation.conf.example storage-aggregation.conf')
         # don't loose any values through aggregation into next retention
@@ -147,6 +149,9 @@ def graphite_install():
 
     # starting nginx
     sudo('nginx')
+
+   	sudo('update-alternatives --set ruby /usr/bin/ruby1.9.1')
+   	sudo('gem install dashing')
 
 
 @task
